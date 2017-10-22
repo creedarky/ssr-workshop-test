@@ -3,7 +3,7 @@ import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import reducer from 'reducers/index.js';
 
-function configureStore() {
+function configureStore(initialState = {}) {
   const middlewares = [thunk];
 
   if (process.env.NODE_ENV !== 'production') {
@@ -11,7 +11,7 @@ function configureStore() {
   }
 
   /* eslint-disable no-underscore-dangle */
-  const composeEnhancers = typeof window === 'object' &&
+  const composeEnhancers = typeof window !== 'undefined' && typeof window === 'object' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ :
     compose;
@@ -21,7 +21,7 @@ function configureStore() {
     applyMiddleware(...middlewares)
   );
 
-  return createStore(reducer, enhancer);
+  return createStore(reducer, initialState, enhancer);
 }
 
 export default configureStore;

@@ -6,9 +6,12 @@ import configureStore from 'configureStore.js';
 import AppView from 'views/AppView/AppView.jsx';
 import 'styles.scss';
 
-const store = configureStore();
+// eslint-disable-next-line no-underscore-dangle
+const initialState = window.__INITIAL_STATE__;
+console.log('###', initialState);
+const store = configureStore(initialState);
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <Provider store={store}>
     <Router><AppView /></Router>
   </Provider>,

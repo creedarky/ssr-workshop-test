@@ -15,6 +15,36 @@ const configs = {
 
 const ENV = process.env.NODE_ENV;
 
+function createCSSLoader() {
+  const loaders =  [{
+    loader: 'css-loader',
+    options: {
+      sourceMap: true
+    }
+  }, {
+    loader: 'postcss-loader',
+    options: {
+      sourceMap: true
+    }
+  }, {
+    loader: 'sass-loader',
+    options: {
+      sourceMap: true,
+      outputStyle: 'expanded',
+      includePaths: [
+        path.resolve(__dirname, 'src/styles')
+      ]
+    }
+  }];
+  // if (process.env.NODE_ENV === 'development') {
+  return ExtractTextPlugin.extract({
+    fallback: 'style-loader',
+    use: loaders
+  });
+  // }
+  // return [{ loader: 'style-loader' }, ...loaders];
+}
+
 const commonConfig = {
   name: 'client',
   target: 'web',
@@ -37,36 +67,14 @@ const commonConfig = {
       use: 'babel-loader'
     }, {
       test: /\.scss$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [{
-          loader: 'css-loader',
-          options: {
-            sourceMap: true
-          }
-        }, {
-          loader: 'postcss-loader',
-          options: {
-            sourceMap: true
-          }
-        }, {
-          loader: 'sass-loader',
-          options: {
-            sourceMap: true,
-            outputStyle: 'expanded',
-            includePaths: [
-              path.resolve(__dirname, 'src/styles')
-            ]
-          }
-        }]
-      })
+      use: createCSSLoader(),
     }]
   },
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules']
   },
   plugins: [
-    // new CleanWebpackPlugin([path.join(__dirname, 'dist')]),
+    new CleanWebpackPlugin([path.join(__dirname, 'dist')]),
     new webpack.LoaderOptionsPlugin({
       test: /\.jsx?$/,
       options: {
@@ -82,13 +90,13 @@ const commonConfig = {
       context: path.join(__dirname, 'src'),
       emitErrors: ENV !== 'development'
     }),
-    new HtmlWebpackPlugin({
-      title: 'hatch-react',
-      template: path.join(__dirname, 'index.html'),
-      inject: 'body',
-      alwaysWriteToDisk: true
-    }),
-    new HtmlWebpackHarddiskPlugin()
+    // new HtmlWebpackPlugin({
+    //   title: 'hatch-react',
+    //   template: path.join(__dirname, 'index.html'),
+    //   inject: 'body',
+    //   alwaysWriteToDisk: true
+    // }),
+    // new HtmlWebpackHarddiskPlugin()
   ]
 };
 
