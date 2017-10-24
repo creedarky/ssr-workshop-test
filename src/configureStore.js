@@ -21,7 +21,19 @@ function configureStore(initialState = {}) {
     applyMiddleware(...middlewares)
   );
 
-  return createStore(reducer, initialState, enhancer);
+  const store = createStore(reducer, initialState, enhancer);
+
+  /* eslint-disable */
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('reducers/index.js', () => {
+      const nextRootReducer = require('reducers/index.js').default;
+      store.replaceReducer(nextRootReducer);
+    });
+  }
+  /* eslint-enable */
+
+  return store;
 }
 
 export default configureStore;

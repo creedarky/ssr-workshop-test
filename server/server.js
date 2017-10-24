@@ -11,6 +11,7 @@ function getJSFile(assets) {
 }
 
 module.exports = function serverRenderer({ clientStats }) {
+  console.log(clientStats.assets);
   const script = getJSFile(clientStats.assets);
   const style = getCssFile(clientStats.assets);
 

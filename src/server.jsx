@@ -4,7 +4,7 @@ import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { StaticRouter as Router } from 'react-router-dom';
 import configureStore from 'configureStore.js';
-import AppView from 'views/AppView/AppView.jsx';
+import AppView from 'views/AppView.jsx';
 import Html from 'components/Html/Html.jsx';
 import 'styles.scss';
 

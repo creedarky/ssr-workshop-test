@@ -10,8 +10,8 @@ function HomeView() {
         <li>React</li>
         <li>Redux</li>
         <li>React Router</li>
-        <li>Webpack</li>
-        <li>Sass</li>
+        <li>dsadsa</li>
+        <li>a</li>
       </ul>
     </Container>
   );

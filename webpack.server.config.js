@@ -6,7 +6,7 @@ const ENV = process.env.NODE_ENV;
 const sConfig = {
   name: 'server',
   target: 'node',
-  entry: './server/server.jsx',
+  entry: './server/server.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     libraryTarget: 'commonjs2',

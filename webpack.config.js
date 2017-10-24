@@ -36,20 +36,21 @@ function createCSSLoader() {
       ]
     }
   }];
-  // if (process.env.NODE_ENV === 'development') {
   return ExtractTextPlugin.extract({
     fallback: 'style-loader',
     use: loaders
   });
-  // }
-  // return [{ loader: 'style-loader' }, ...loaders];
 }
 
 const commonConfig = {
   name: 'client',
   target: 'web',
   entry: {
-    index: path.join(__dirname, 'src/index.jsx')
+    index: [
+      'webpack-hot-middleware/client',
+      'react-hot-loader/patch',
+      path.join(__dirname, 'src/index.jsx'),
+    ]
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
