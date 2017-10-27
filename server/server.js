@@ -16,7 +16,7 @@ module.exports = function serverRenderer({ clientStats }) {
   const style = getCssFile(clientStats.assets);
 
   return (req, res, next) => {
-    console.log(script, style);
-    res.status(200).send(renderApp({ req, context: {}, script, style }));
+    renderApp({ req, context: {}, script, style })
+      .then(html => res.status(200).send(html));
   };
 };

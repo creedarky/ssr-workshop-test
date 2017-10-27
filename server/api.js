@@ -1,6 +1,5 @@
-'use strict';
-
 const express = require('express');
+
 const router = express.Router();
 
 const IMAGES = [
@@ -13,9 +12,8 @@ const IMAGES = [
 
 router.get('/api', (req, res) => {
   const index = Math.round(Math.random() * (IMAGES.length));
-  console.log('###', index);
   res.json({
-    image: IMAGES[index]
+    image: IMAGES[index] || IMAGES[0]
   });
 });
 

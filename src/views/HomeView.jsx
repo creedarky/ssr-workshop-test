@@ -1,5 +1,7 @@
 import React from 'react';
 import Container from 'components/Container/Container.jsx';
+import ImageContainer from 'containers/ImageContainer/ImageContainer.jsx';
+import { fetchImage } from 'actions/image.js';
 
 function HomeView() {
   return (
@@ -10,11 +12,14 @@ function HomeView() {
         <li>React</li>
         <li>Redux</li>
         <li>React Router</li>
-        <li>dsadsa</li>
+        <li>HOME</li>
         <li>a</li>
       </ul>
+      <ImageContainer />
     </Container>
   );
 }
+
+HomeView.fetchData = ({ dispatch }) => dispatch(fetchImage());
 
 export default HomeView;

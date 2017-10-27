@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "start:dev": "node server/index.js",
+    "start:dev": "cross-env NODE_ENV=development node server/index.js",
     "start:development": "cross-env NODE_ENV=development webpack-dev-server",
     "build:development": "cross-env NODE_ENV=development webpack",
     "build:staging": "cross-env NODE_ENV=staging webpack",
@@ -19,6 +19,7 @@
   "author": "Max - Axiom Zen",
   "dependencies": {
     "@storybook/react": "^3.0.0",
+    "axios": "^0.17.0",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.1",
     "babel-loader": "^6.4.1",

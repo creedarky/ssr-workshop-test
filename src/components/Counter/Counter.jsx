@@ -12,7 +12,7 @@ const Counter = ({ count, increment, decrement }) => (
       <button className="Counter-button" onClick={increment}>+</button>
     </div>
   </div>
-);
+  );
 
 Counter.propTypes = {
   count: PropTypes.number.isRequired,

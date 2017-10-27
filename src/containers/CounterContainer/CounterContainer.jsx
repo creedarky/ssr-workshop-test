@@ -23,9 +23,10 @@ CounterContainer.propTypes = {
   decrement: PropTypes.func.isRequired
 };
 
-function mapStateToProps({ count }) {
+function mapStateToProps({ count, image }) {
   return {
-    count
+    count,
+    image
   };
 }
 

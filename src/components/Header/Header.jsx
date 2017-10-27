@@ -24,6 +24,6 @@ const Header = () => (
       </nav>
     </Container>
   </div>
-);
+  );
 
 export default Header;
