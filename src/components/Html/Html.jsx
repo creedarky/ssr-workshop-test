@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import serialize from 'serialize-javascript';
 
-const Html = ({ title, style, script, markup, initialState }) => (
+const Html = ({ title, style, scripts, markup, initialState }) => (
   <html lang="en">
     <head>
       <title>{title}</title>
@@ -16,7 +16,7 @@ const Html = ({ title, style, script, markup, initialState }) => (
           __html: `window.__INITIAL_STATE__ = ${serialize(initialState)}`
         }}
       />
-      <script src={`/${script.name}`} />
+      {scripts.map(s => <script src={`/${s.name}`} />)}
     </body>
   </html>
   );
@@ -24,7 +24,9 @@ const Html = ({ title, style, script, markup, initialState }) => (
 Html.propTypes = {
   title: PropTypes.string,
   style: PropTypes.string.isRequired,
-  script: PropTypes.string.isRequired,
+  scripts: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired
+  })).isRequired,
   markup: PropTypes.string.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   initialState: PropTypes.object.isRequired

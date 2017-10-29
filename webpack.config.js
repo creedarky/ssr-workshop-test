@@ -98,6 +98,17 @@ const commonConfig = {
     //   alwaysWriteToDisk: true
     // }),
     // new HtmlWebpackHarddiskPlugin()
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'bootstrap',
+      minChunks(module) {
+        if (module.resource && (/^.*\.(css|scss)$/).test(module.resource)) {
+          return false;
+        }
+        // this assumes your vendor imports exist in the node_modules directory
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      }
+    })
   ]
 };
 

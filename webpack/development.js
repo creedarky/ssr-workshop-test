@@ -25,5 +25,5 @@ module.exports = {
     inline: true,
     port: '3000'
   },
-  devtool: 'cheap-eval-source-map'
+  devtool: 'eval-source-map'
 };

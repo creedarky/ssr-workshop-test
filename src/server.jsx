@@ -9,7 +9,7 @@ import routes from 'routes.jsx';
 import Html from 'components/Html/Html.jsx';
 import 'styles.scss';
 
-export default function ({ req, context, style, script }) {
+export default function ({ req, context, style, scripts }) {
   const store = configureStore();
 
   const promises = routes.reduce((matches, route) => {
@@ -23,10 +23,8 @@ export default function ({ req, context, style, script }) {
     return matches;
   }, []);
 
-  console.log('length', promises);
   return Promise.all(promises)
     .then(() => {
-      console.log('state', store.getState());
       const markup = ReactDOMServer.renderToString(
         <Provider store={store}>
           <Router location={req.url} context={context}><AppView /></Router>
@@ -34,7 +32,7 @@ export default function ({ req, context, style, script }) {
       );
 
       return ReactDOMServer.renderToStaticMarkup(
-        <Html style={style} script={script} initialState={store.getState()} markup={markup} />
+        <Html style={style} scripts={scripts} initialState={store.getState()} markup={markup} />
       );
     });
 }

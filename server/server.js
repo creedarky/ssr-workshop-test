@@ -7,16 +7,18 @@ function getCssFile(assets) {
 }
 
 function getJSFile(assets) {
-  return assets.find(asset => /\.js$/.test(asset.name));
+  return assets.filter(asset => /\.js$/.test(asset.name))
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 module.exports = function serverRenderer({ clientStats }) {
   console.log(clientStats.assets);
-  const script = getJSFile(clientStats.assets);
+  const scripts = getJSFile(clientStats.assets);
   const style = getCssFile(clientStats.assets);
 
   return (req, res, next) => {
-    renderApp({ req, context: {}, script, style })
+    console.log(scripts);
+    renderApp({ req, context: {}, scripts, style })
       .then(html => res.status(200).send(html));
   };
 };
