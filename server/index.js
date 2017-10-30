@@ -1,5 +1,6 @@
 const express = require('express');
 const webpack = require('webpack');
+const Loadable = require('react-loadable');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
@@ -29,7 +30,9 @@ app.use(
 );
 app.use(webpackHotServerMiddleware(compiler));
 
-
-const server = app.listen(6060, () => {
-  server.keepAliveTimeout = 0;
+Loadable.preloadAll().then(() => {
+  const server = app.listen(6060, () => {
+    server.keepAliveTimeout = 0;
+  });
 });
+

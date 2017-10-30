@@ -7,16 +7,17 @@ const Html = ({ title, style, scripts, markup, initialState }) => (
   <html lang="en">
     <head>
       <title>{title}</title>
-      <link type="text/css" rel="stylesheet" href={`/${style.name}`} />
+      <link type="text/css" rel="stylesheet" href={`/${style}`} />
     </head>
     <body>
       <div id="app" dangerouslySetInnerHTML={{ __html: markup }} />
       <script
+        type="text/javascript"
         dangerouslySetInnerHTML={{
           __html: `window.__INITIAL_STATE__ = ${serialize(initialState)}`
         }}
       />
-      {scripts.map(s => <script src={`/${s.name}`} />)}
+      {scripts.map(s => <script type="text/javascript" src={`/${s}`} />)}
     </body>
   </html>
   );

@@ -49,6 +49,9 @@ const sConfig = {
         'NODE_ENV': JSON.stringify('development')
       }
     }),
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1
+    })
     // new webpack.HotModuleReplacementPlugin(),
     // new webpack.LoaderOptionsPlugin({
     //   test: /\.jsx?$/,

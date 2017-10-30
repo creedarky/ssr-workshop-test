@@ -1,14 +1,14 @@
-import HomeView from 'views/HomeView.jsx';
-import CounterView from 'views/CounterView.jsx';
+import Home from 'views/Home/index.jsx';
+import Counter from 'views/Counter/index.jsx';
 
 const routes = [
   {
-    component: HomeView,
+    component: Home,
     path: '/',
     exact: true
   },
   {
-    component: CounterView,
+    component: Counter,
     path: '/counter',
     exact: true
   }

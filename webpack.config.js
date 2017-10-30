@@ -6,6 +6,7 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
+const { ReactLoadablePlugin } = require('react-loadable/webpack');
 
 const configs = {
   development: require('./webpack/development.js'),
@@ -108,6 +109,9 @@ const commonConfig = {
         // this assumes your vendor imports exist in the node_modules directory
         return module.context && module.context.indexOf('node_modules') !== -1;
       }
+    }),
+    new ReactLoadablePlugin({
+      filename: './dist/react-loadable.json'
     })
   ]
 };

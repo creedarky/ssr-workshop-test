@@ -1,7 +1,6 @@
 import React from 'react';
 import Container from 'components/Container/Container.jsx';
 import ImageContainer from 'containers/ImageContainer/ImageContainer.jsx';
-import { fetchImage } from 'actions/image.js';
 
 function HomeView() {
   return (
@@ -19,7 +18,5 @@ function HomeView() {
     </Container>
   );
 }
-
-HomeView.fetchData = ({ dispatch }) => dispatch(fetchImage());
 
 export default HomeView;
